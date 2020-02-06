@@ -19,7 +19,7 @@ module.exports = async(client, member) => {
 	return ctx.font;
 };
   let position = member.guild.memberCount;
-	const channel = member.guild.channels.get(`673880182519496714`);
+	const channel = member.guild.channels.get(`547100814557052996`);
 	if (!channel) return;
 
 	const canvas = Canvas.createCanvas(850, 1000);
@@ -58,5 +58,5 @@ module.exports = async(client, member) => {
 
 	const attachment = new discord.Attachment(canvas.toBuffer(), 'welcome-image.png');
   //channel.send("𝒟𝑜𝓃'𝓉 𝐹𝑜𝓇𝑔𝑒𝓉 𝒯𝑜 𝑅𝑒𝒶𝒹  #🗒•‣⌈ʀᴜʟᴇs⌋");
-	channel.send(`Welcome to the server, ${member}!`+ "\n" + `📌 Dont forgot to read ${member.guild.channels.get('673880182519496714').toString()}` + "\n" + `📌 Check ${member.guild.channels.get('673880182519496714').toString()} for Role 👑`, attachment);
+	channel.send(`Welcome to the server, ${member}!`+ "\n" + `📌 Dont forgot to read ${member.guild.channels.get('547101326019002409').toString()}` + "\n" + `📌 Check ${member.guild.channels.get('589503796913111149').toString()} for Role 👑`, attachment);
 };

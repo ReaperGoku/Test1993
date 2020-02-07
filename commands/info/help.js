@@ -53,4 +53,4 @@ function getCMD(client, message, input) {
         embed.setFooter(`Syntex : <> =require, [] = optional`);
     }
     return message.channel.send(embed.setColor("GREEN"));
-}
+};

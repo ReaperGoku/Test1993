@@ -3,7 +3,6 @@ const fetch = require("node-fetch");
 
 module.exports = {
     name : "news",
-    aliases : ["headlines"],
     category: "info",
     description : "Current News of INDIA",
 
@@ -35,8 +34,8 @@ module.exports = {
                 channel.send(embed);
             }
 
-              setTimeout(news, 1200000)
+              setTimeout(news, 60*1200000)
         }
-              news();
+      news();
     }
 };

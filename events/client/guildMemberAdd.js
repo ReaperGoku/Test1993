@@ -33,18 +33,18 @@ module.exports = async(client, member) => {
 
 	// Slightly smaller text placed above the member's display name
 	ctx.font = '38px sans-serif';
-  ctx.textAlign = 'center';
+    ctx.textAlign = 'center';
 	ctx.fillStyle = '#ffffff';
 	ctx.fillText('Welcome to the server,', canvas.width / 2, canvas.height / 10);
   
-  ctx.font = '38px serif';
-  ctx.textAlign = 'center';  
-  ctx.fillStyle = '#ffffff';
-  ctx.fillText(`You are the ${position}'th member.`, canvas.width / 2,canvas.height / 2.55);
+    ctx.font = '38px serif';
+    ctx.textAlign = 'center';  
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(`You are the ${position}'th member.`, canvas.width / 2,canvas.height / 2.55);
 
 	// Add an exclamation point here and below
 	ctx.font = applyText(canvas, `${member.displayName}!`);
-  ctx.textAlign = 'center';
+    ctx.textAlign = 'center';
 	ctx.fillStyle = '#ffffff';
 	ctx.fillText(`${member.displayName}!`, canvas.width / 2, canvas.height / 2.9);
 

@@ -21,7 +21,7 @@ function getAll(client, message) {
     const embed = new RichEmbed()
      .setColor("RANDOM")
 
-     const commands = (category) => {
+    const commands = (category) => {
         return client.commands
          .filter(cmd => cmd.category === category)
          .map(cmd => `- \`${cmd.name}\``)
@@ -31,6 +31,7 @@ function getAll(client, message) {
     const info = client.categories
      .map(cat => stripIndents`**${cat[0].toUpperCase()+ cat.slice(1)}** \n ${commands(cat)}`)
      .reduce((string, category)=> string + "\n" + category);
+    
      return message.channel.send(embed.setDescription(info));
 }
 
@@ -39,7 +40,7 @@ function getCMD(client, message, input) {
 
     const cmd = client.commands.get(input.toLowerCase()) || client.commands.get(client.aliases.get(input.toLowerCase()));
 
-    let info = `No information found for command **${input.toLowerCase()}**`
+    let info = `No information found for command **${input.toLowerCase()}**`;
 
     if(!cmd) {
         return message.channel.send(embed.setColor("RED").setDescription(info)).then(m => m.delete(5000));
@@ -52,5 +53,5 @@ function getCMD(client, message, input) {
         info += `\n**Usage**:${cmd.usage}`;
         embed.setFooter(`Syntex : <> =require, [] = optional`);
     }
-    return message.channel.send(embed.setColor("GREEN"));
+    return message.channel.send(embed.setColor("GREEN").setDescription(info));
 };

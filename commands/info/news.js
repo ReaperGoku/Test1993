@@ -10,9 +10,8 @@ module.exports = {
         const config = {
             api : process.env.NEWSAPI
         };
-        async function news() {
 
-          const channel = message.member.guild.channels.get(`675013672602697730`);
+          const channel = message.member.guild.channels.get(`667188695790649364`);
           message.delete();
         
           var i;
@@ -32,10 +31,6 @@ module.exports = {
                 .setFooter(news.source.name);
        
                 channel.send(embed);
-            }
-
-              setTimeout(news, 60*1200000)
-        }
-      news();
-    }
+          };
+    }   
 };

@@ -20,6 +20,7 @@ module.exports = {
               let news =  await fetch(`https://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=${config.api}`)
                 .then(res => res.json())
                 .then(json => json.articles[i])
+                .catch(err => console.error(err))
           
               let embed = new RichEmbed()
                 .setTitle(news.title)

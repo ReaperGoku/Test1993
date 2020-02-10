@@ -10,8 +10,8 @@ const config = {
     token : process.env.TOKEN,
 };
 
-["commands", "aliases"].forEach(x => client[x] = new Collection()); // a new map for commands
+["commands", "aliases","details"].forEach(x => client[x] = new Collection()); // a new map for commands
 
-["command", "event"].forEach(handler => {require(`./handler/${handler}`)(client)});
+["command", "event", "detail"].forEach(handler => {require(`./handler/${handler}`)(client)});
 
 client.login(config.token);

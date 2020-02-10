@@ -1,0 +1,18 @@
+const { RichEmbed } = require("discord.js");
+
+module.exports = {
+    name : "Ug",
+    run : async(client, message) => {
+        const member = message.guild.members.get("425295803305820160");
+
+        var ug = new RichEmbed()
+        .setTitle("UnGraduate Gamer")
+        .setColor("00FFFF")
+        .addField("IGN:", " Inhibitor007", true)
+        .addField("UID:", 65324399, true)
+        .addField("Guild:", "Âкατsuкi", true)
+        .addField("Favorite Weapon:", "SCAR & MP40", true);
+    
+      message.channel.send(ug);
+    }
+};

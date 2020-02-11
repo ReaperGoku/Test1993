@@ -1,7 +1,7 @@
 const { RichEmbed } = require("discord.js");
 
 module.exports = {
-    name : "Goku",
+    name : "goku",
     run : async(client, message) => {
         let goku = new RichEmbed()
         .setTitle("Rєαpєr☁GoKυ")

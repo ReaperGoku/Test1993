@@ -7,7 +7,7 @@ module.exports = async (client, message) => {
     if(!message.guild)return;
     if(!message.member) message.member = await message.guild.fetchMember(message);
 
-    const cmd = message.content;
+    const cmd = message.content.toLowerCase();
 
     if(cmd.length === 0)return;
 

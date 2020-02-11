@@ -1,7 +1,7 @@
 const { RichEmbed } = require("discord.js");
 
 module.exports = {
-    name : "Rugved",
+    name : "rugved",
     run : async(client, message) => {
         const member = message.guild.members.get("534631377635770379");
 

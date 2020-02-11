@@ -1,4 +1,5 @@
 const { RichEmbed } = require("discord.js");
+const { stripIndents } = require("common-tags");
 
 module.exports = {
     name : "ff",
@@ -187,9 +188,138 @@ module.exports = {
       case "itachi":
       const itachi = new RichEmbed().setImage(
         "https://i.pinimg.com/originals/19/e0/82/19e082ac5754c0861bf7c6f1d410f511.jpg"
-      );
+      );    
       message.channel.send(itachi);
       break;
+      // Charecter
+      case "andrew":
+        const andrew = new RichEmbed()
+        .setAuthor('Andrew (Male-42)')
+        .setDescription('Andrew was a police officer. With his strong sense of justice, he spent most of his time chasing criminals. His singlet was his lucky charm, he had already lost count of the number of fights he survived wearing it. Searching for the truth behind everything was his call of duty.')
+        .addField("SPECIAL SURVIVAL ABILITY","Decrease vest durability loss.",true)
+        .addField('Armor Specialist', stripIndents`**> LEVEL 1:** Vest durability loss decreased by 2%
+          **> LEVEL 2:** Vest durability loss decreased by 4%
+          **> LEVEL 3:** Vest durability loss decreased by 6%
+          **> LEVEL 4:** Vest durability loss decreased by 8%
+          **> LEVEL 5:** Unlocks Alternative Police Set.
+          **> LEVEL 6:** Vest durability loss decreased by 10%
+          **> LEVEL 7:** Andrew's Achievement
+          **> LEVEL 8:** Vest durability loss decreased by 12%`,true)
+        .setImage("https://i.pinimg.com/originals/18/a1/e9/18a1e91d4b2290121709cab68c09dc7a.png");    
+        message.channel.send(andrew);
+        break;
+        case "kelly":
+        const Kelly = new RichEmbed()
+        .setAuthor('Kelly (Female-17)')
+        .setDescription('Kelly is a high-school sprinter.She is also known as Shimada Kiriko.She loves to run, and can always be seen on the track.Running forward is built into her mind and body. No matter the obstacle, she will always push forward.Keep Running! KIRIKO!')
+        .addField("SPECIAL SURVIVAL ABILITY","Increase sprinting speed.",true)
+        .addField('Dash', stripIndents`**> LEVEL 1:** Sprinting speed increased by 1%
+          **> LEVEL 2:** Sprinting speed increased by 2%
+          **> LEVEL 3:** Sprinting speed increased by 3%
+          **> LEVEL 4:** Sprinting speed increased by 4%
+          **> LEVEL 5:** Unlocks Training Set.
+          **> LEVEL 6:** Sprinting speed increased by 5%
+          **> LEVEL 7:** Kelly's Achievement
+          **> LEVEL 8:** Sprinting speed increased by 6%`,true)
+        .setImage("https://i.pinimg.com/originals/4c/ac/c8/4cacc84ff5a294556138d1eca0d00b9c.png");    
+        message.channel.send(Kelly);
+        break;
+        case "maxim":
+        const Maxim = new RichEmbed()
+        .setAuthor('Maxim (Male-17)')
+        .setDescription('Maxim loves to livestream while he eats.With a humongous appetite, he never says no to food.He has won several speed eating competitions, even if he goes against people who are much bigger than him.Born with a very cheerful disposition, Maxim is very well-liked by the people around him.')
+        .addField("SPECIAL SURVIVAL ABILITY","Reduce time for eating mushrooms and using med kits.",true)
+        .addField('Gluttony', stripIndents`**> LEVEL 1:** Reduces the time for eating mushrooms and using med kits by 2%
+          **> LEVEL 2:** Reduces the time for eating mushrooms and using med kits by 4%
+          **> LEVEL 3:** Reduces the time for eating mushrooms and using med kits by 6%
+          **> LEVEL 4:** Reduces the time for eating mushrooms and using med kits by 8%
+          **> LEVEL 5:** Maxim's Foodie Jacket.
+          **> LEVEL 6:** Reduces the time for eating mushrooms and using med kits by 10%
+          **> LEVEL 7:** Maxim's Achievement
+          **> LEVEL 8:** Reduces the time for eating mushrooms and using med kits by 12%`,true)
+        .setImage("https://i.pinimg.com/originals/d9/9d/52/d99d5212a1efea58b7be20004c8ea349.png");    
+        message.channel.send(Maxim);
+        break;
+        case "ford":
+        const Ford = new RichEmbed()
+        .setAuthor('Ford (Male-31)')
+        .setDescription('Ford was an ordinary man from the navy.Even an ordinary man has his own secrets. Ford was no exception.A man’s name is not important. What’s important is his motives and actions.Ford was a very resilient man.The only person who can make his determination waver, was probably her…')
+        .addField("SPECIAL SURVIVAL ABILITY","Reduce damage taken outside safe zone.",true)
+        .addField('Iron Will', stripIndents`**> LEVEL 1:** Reduce damage when outside safe zone by 4%
+          **> LEVEL 2:** Reduce damage when outside safe zone by 8%
+          **> LEVEL 3:** Reduce damage when outside safe zone by 12%
+          **> LEVEL 4:** Reduce damage when outside safe zone by 16%
+          **> LEVEL 5:** Ford's uniform as a cadet in training.
+          **> LEVEL 6:** Reduce damage when outside safe zone by 20%
+          **> LEVEL 7:** Ford's Achievement
+          **> LEVEL 8:** Reduce damage when outside safe zone by 24%`,true)
+        .setImage("https://i.pinimg.com/originals/53/e1/4e/53e14e71f8f34d02d36d153c5d7f3570.png");    
+        message.channel.send(Ford);
+        break;
+        case "olivia":
+        const Olivia = new RichEmbed()
+        .setTitle('Olivia (Female-29)')
+        .setDescription('Olivia was a nurse. Nursing and caring for those around her brings her happiness.No matter who, friend or foe, she always gives her all in taking care of her patients.It is said that patients saved by her healing touch, gain an inexplicable strength and confidence in life.Olivia is a very reliable companion in all situations.')
+        .addField("SPECIAL SURVIVAL ABILITY","Players revived by Olivia will get extra HP.",true)
+        .addField('Healing Touch', stripIndents`**> LEVEL 1:** Players revived by Olivia will get up with extra 6 HP.
+          **> LEVEL 2:** Players revived by Olivia will get up with extra 12 HP.
+          **> LEVEL 3:** Players revived by Olivia will get up with extra 18 HP.
+          **> LEVEL 4:** Players revived by Olivia will get up with extra 24 HP.
+          **> LEVEL 5:** Unlocks Intern Set.
+          **> LEVEL 6:** Players revived by Olivia will get up with extra 30 HP.
+          **> LEVEL 7:** Olivia's Achievement
+          **> LEVEL 8:** Players revived by Olivia will get up with extra 40 HP.`,true)
+        .setImage("https://i.pinimg.com/originals/ee/55/f3/ee55f32983d96d366052838c08baae29.png");    
+        message.channel.send(Olivia);
+        break; 
+        case "nikita":
+        const Nikita = new RichEmbed()
+        .setTitle('Nikita (Female-22)')
+        .setDescription(`Nikita is a professional bodyguard.Her most important assignment is to protect and escort Carolyn, the daughter of the chairman of the Free Fire's organization.Growing up, Nikita was a air rifle marksman in school, which helped hone her agility and keen senses.To achieve her objectives, she infiltrated the organization and become Carolyn's bodyguard.`)
+        .addField("SPECIAL SURVIVAL ABILITY","Reload Submachine gun faster.",true)
+        .addField('Firearms Expert', stripIndents`**> LEVEL 1:** Submachine gun reload faster by 4%
+          **> LEVEL 2:** Submachine gun reload faster by 8%
+          **> LEVEL 3:** Submachine gun reload faster by 12%
+          **> LEVEL 4:** Submachine gun reload faster by 16%
+          **> LEVEL 5:** Nikita's Bodyguard Set.
+          **> LEVEL 6:** Submachine gun reload faster by 20%
+          **> LEVEL 7:** Nikita's Achievement
+          **> LEVEL 8:** Submachine gun reload faster by 24%`,true)
+        .setImage("https://i.pinimg.com/originals/a4/c7/3d/a4c73d0be86d77c4a40a86c5e7c0dd0d.png");    
+        message.channel.send(Nikita);
+        break;
+        case "misha":
+        const Misha = new RichEmbed()
+        .setTitle('Misha (Female-19)')
+        .setDescription('Misha is an extremely talented racer.Her never-say-die attitude and insane driving skills earned her the title of Racequeen from the racing community.Always the one to tackle challenges head on, she rose rapidly to fame as she competed in more tournaments.To Misha, there are no curve roads, the road forward is always straight.')
+        .addField("SPECIAL SURVIVAL ABILITY","Increase driving speed and reduce damage taken while inside vehicles.",true)
+        .addField('Afterburner', stripIndents`**> LEVEL 1:** Driving speed increased by 2%, damage taken while in a vehicle decreased by 5%.
+          **> LEVEL 2:** Driving speed increased by 4%, damage taken while in a vehicle decreased by 10%.
+          **> LEVEL 3:** Driving speed increased by 6%, damage taken while in a vehicle decreased by 15%
+          **> LEVEL 4:** Driving speed increased by 8%, damage taken while in a vehicle decreased by 20%
+          **> LEVEL 5:** Misha's Racequeen Set.
+          **> LEVEL 6:** Driving speed increased by 10%, damage taken while in a vehicle decreased by 25%
+          **> LEVEL 7:** Misha's Achievement
+          **> LEVEL 8:** Driving speed increased by 12%, damage taken while in a vehicle decreased by 30%`,true)
+        .setImage("https://i.pinimg.com/originals/97/6e/48/976e486517be4defa30493dadb14b5b6.png");    
+        message.channel.send(Misha);
+        break; 
+        case "kla":
+        const Kla = new RichEmbed()
+        .setTitle('Kla (Male-27)')
+        .setDescription('Kla was an esteemed martial artist, specializing in Muay Thai.A few years ago, he mysteriously disappeared and no one could find him.The Kla that reappeared before everyone is not the same one as the famous Kla that everyone in the industry was familiar with.He is now an avenger, and leaves no mercy to anyone.Be careful of his fists, they will break anything and everything.')
+        .addField("SPECIAL SURVIVAL ABILITY","Increased fist damage.",true)
+        .addField('Muay Thai', stripIndents`**> LEVEL 1:** Fist damage increased 100%
+          **> LEVEL 2:** Fist damage increased 150%
+          **> LEVEL 3:** Fist damage increased 200%
+          **> LEVEL 4:** Fist damage increased 250%
+          **> LEVEL 5:** Avenger's Fists (Jacket)
+          **> LEVEL 6:** Fist damage increased 300%
+          **> LEVEL 7:** Art of Eight
+          **> LEVEL 8:** Fist damage increased 400%`,true)
+        .setImage("https://i.pinimg.com/originals/50/73/5c/50735c516687de89b1207b0b03f39b67.png");    
+        message.channel.send(Kla);
+        break;                       
       default:
             message.channel.send("Not defined yet");
       }

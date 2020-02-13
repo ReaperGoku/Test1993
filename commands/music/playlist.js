@@ -11,7 +11,7 @@ module.exports = {
     run : async(client, message, args) => {
         const config = {
             YOUTUBE_API_KEY : process.env.YOUTUBE_API_KEY,
-            MAX_PLAYLIST_SIZE : 10
+            MAX_PLAYLIST_SIZE : 20
         };
 
         const youtube = new YouTubeAPI(config.YOUTUBE_API_KEY);

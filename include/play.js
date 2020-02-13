@@ -66,31 +66,31 @@ module.exports = {
       switch (reaction.emoji.name) {
         case "⏭":
           queue.connection.dispatcher.end();
-          queue.textChannel.send(`${user} ⏩ skipped the song`).catch(console.error);
+          queue.textChannel.send(`${message.author} ⏩ skipped the song`).catch(console.error);
           collector.stop();
-          playingMessage.reactions.removeAll();
+          playingMessage.clearReactions();
           break;
 
         case "⏸":
           if (!queue.playing) break;
           queue.playing = false;
           queue.connection.dispatcher.pause();
-          queue.textChannel.send(`${user} ⏸ paused the music.`).catch(console.error);
+          queue.textChannel.send(`${message.author} ⏸ paused the music.`).catch(console.error);
           break;
 
         case "▶":
           if (queue.playing) break;
           queue.playing = true;
           queue.connection.dispatcher.resume();
-          queue.textChannel.send(`${user} ▶ resumed the music!`).catch(console.error);
+          queue.textChannel.send(`${message.author} ▶ resumed the music!`).catch(console.error);
           break;
 
         case "⏹":
           queue.songs = [];
           queue.connection.dispatcher.end();
-          queue.textChannel.send(`${user} ⏹ stopped the music!`).catch(console.error);
+          queue.textChannel.send(`${message.author} ⏹ stopped the music!`).catch(console.error);
           collector.stop();
-          playingMessage.reactions.removeAll();
+          playingMessage.clearReactions();
           break;
 
         default:
@@ -99,7 +99,8 @@ module.exports = {
     });
 
     collector.on("end", () => {
-      playingMessage.reactions.removeAll();
+      // playingMessage.reactions.removeAll();
+      playingMessage.clearReactions();
     });
   }
 };

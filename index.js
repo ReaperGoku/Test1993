@@ -14,4 +14,6 @@ const config = {
 
 ["command", "event", "detail"].forEach(handler => {require(`./handler/${handler}`)(client)});
 
+client.queue = new Map(); //n
+
 client.login(config.token);

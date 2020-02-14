@@ -10,7 +10,7 @@ module.exports = {
     // toggle from false to true and reverse
     serverQueue.loop = !serverQueue.loop;
     return serverQueue.textChannel
-      .send(`\n \`\`\`Loop is now ${serverQueue.loop ? "**on**" : "**off**"}\`\`\``)
+      .send(`\n \`\`\`Loop is now ${serverQueue.loop ? "ON" : "OFF"}\`\`\``)
       .catch(console.error);
     }
 };

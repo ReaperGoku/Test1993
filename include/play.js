@@ -49,7 +49,7 @@ module.exports = {
 
     try {
       const embed = new RichEmbed()
-      .setTitle(`🎶 Started playing: **${song.title}**`)
+      .setTitle(`🎶 Started playing: ${song.title}`)
       .setThumbnail(`https://img.youtube.com/vi/${song.id}/maxresdefault.jpg`);
 
       var playingMessage = await queue.textChannel.send(embed); //${song.url}

@@ -13,7 +13,7 @@ module.exports = {
 
 ${serverQueue.songs.map((song, index) => index + 1 + ". " + song.title).join("\n")}
 
-Now playing: **${serverQueue.songs[0].title}**
+Now playing: ${serverQueue.songs[0].title}
 		\`\`\``,
         { split: true }
       )

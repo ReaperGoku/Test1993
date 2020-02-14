@@ -12,6 +12,6 @@ module.exports = {
     if (!serverQueue) return message.channel.send("\n \`\`\`There is no queue.\`\`\`").catch(console.error);
 
     const song = serverQueue.songs.splice(args[0] - 1, 1);
-    serverQueue.textChannel.send(`\n \`\`\`${message.author} ❌ removed **${song[0].title}** from the queue.\`\`\``);
+    serverQueue.textChannel.send(`\n \`\`\`${message.author} ❌ removed ${song[0].title} from the queue.\`\`\``);
     }
 };

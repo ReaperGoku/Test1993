@@ -42,7 +42,7 @@ module.exports = {
         const serverQueue = message.client.queue.get(message.guild.id);
         const queueConstruct = {
           textChannel: message.channel,
-          channel,
+          channel : channel,
           connection: null,
           songs: [],
           loop: false,
@@ -90,7 +90,7 @@ module.exports = {
           serverQueue.songs.push(song);
 
           const embed = new RichEmbed()
-            .setDescription(`✅ **${song.title}** has been added to the queue by ${message.member.displayName}`);
+            .setDescription(`✅ ${song.title} has been added to the queue by ${message.member.displayName}`);
 
           return serverQueue.textChannel
             .send(embed)

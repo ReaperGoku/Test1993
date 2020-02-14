@@ -75,7 +75,7 @@ module.exports = {
       if (serverQueue) {
         serverQueue.songs.push(song);
         message.channel
-          .send(`\n \`\`\`✅ **${song.title}** has been added to the queue by ${message.author}\`\`\``)
+          .send(`\n \`\`\`✅ ${song.title} has been added to the queue by ${message.member.displayName}\`\`\``)
           .catch(console.error);
       } else {
         queueConstruct.songs.push(song);
@@ -84,7 +84,7 @@ module.exports = {
 
     message.channel
       .send("\n" +
-        `\`\`\`${message.author} 📃 Added a playlist - **${playlist.title}** <${playlist.url}>
+        `\`\`\`${message.member.displayName} 📃 Added a playlist - ${playlist.title} <${playlist.url}>
 
 ${queueConstruct.songs.map((song, index) => index + 1 + ". " + song.title).join("\n")}
 \`\`\``,

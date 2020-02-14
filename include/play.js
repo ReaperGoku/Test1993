@@ -1,5 +1,6 @@
 const ytdlDiscord = require("ytdl-core-discord");
 const ytdl = require('ytdl-core');
+const { RichEmbed } = require("discord.js");
 
 module.exports = {
   async play(song, message) {
@@ -8,7 +9,7 @@ module.exports = {
     if (!song) {
       queue.channel.leave();
       message.client.queue.delete(message.guild.id);
-      return queue.textChannel.send("🚫 Music queue ended.").catch(console.error);
+      return queue.textChannel.send("\n \`\`\`🚫 Music queue ended.\`\`\`").catch(console.error);
     }
 
     try {
@@ -21,15 +22,15 @@ module.exports = {
 
       if (error.message.includes("copyright")) {
         return message.channel
-          .send("⛔ A video could not be played due to copyright protection ⛔")
+          .send("\n \`\`\`⛔ A video could not be played due to copyright protection ⛔\`\`\`")
           .catch(console.error);
       } else {
         console.error(error);
       }
     }
 
-    const dispatcher = queue.connection.playStream(ytdl(song.url))
-      // .play(stream, { type: "opus", passes: 3 })
+    const dispatcher = queue.connection
+      .playOpusStream(stream)
       .on("end", () => {
         if (queue.loop) {
           // if loop is on, push the song back at the end of the queue
@@ -47,7 +48,11 @@ module.exports = {
     dispatcher.setVolumeLogarithmic(queue.volume / 100);
 
     try {
-      var playingMessage = await queue.textChannel.send(`🎶 Started playing: **${song.title}** ${song.url}`);
+      const embed = new RichEmbed()
+      .setTitle(`🎶 Started playing: **${song.title}**`)
+      .setThumbnail(`https://img.youtube.com/vi/${song.id}/maxresdefault.jpg`);
+
+      var playingMessage = await queue.textChannel.send(embed); //${song.url}
       await playingMessage.react("⏭");
       await playingMessage.react("⏸");
       await playingMessage.react("▶");
@@ -66,7 +71,7 @@ module.exports = {
       switch (reaction.emoji.name) {
         case "⏭":
           queue.connection.dispatcher.end();
-          queue.textChannel.send(`${message.author} ⏩ skipped the song`).catch(console.error);
+          queue.textChannel.send(`\`\`\`⏩ skipped the song\`\`\``).catch(console.error);
           collector.stop();
           playingMessage.clearReactions();
           break;
@@ -75,20 +80,20 @@ module.exports = {
           if (!queue.playing) break;
           queue.playing = false;
           queue.connection.dispatcher.pause();
-          queue.textChannel.send(`${message.author} ⏸ paused the music.`).catch(console.error);
+          queue.textChannel.send(`\`\`\`⏸ paused the music.\`\`\``).catch(console.error);
           break;
 
         case "▶":
           if (queue.playing) break;
           queue.playing = true;
           queue.connection.dispatcher.resume();
-          queue.textChannel.send(`${message.author} ▶ resumed the music!`).catch(console.error);
+          queue.textChannel.send(`\`\`\`▶ resumed the music!\`\`\``).catch(console.error);
           break;
 
         case "⏹":
           queue.songs = [];
           queue.connection.dispatcher.end();
-          queue.textChannel.send(`${message.author} ⏹ stopped the music!`).catch(console.error);
+          queue.textChannel.send(`\`\`\`⏹ stopped the music!\`\`\``).catch(console.error);
           collector.stop();
           playingMessage.clearReactions();
           break;
@@ -99,7 +104,6 @@ module.exports = {
     });
 
     collector.on("end", () => {
-      // playingMessage.reactions.removeAll();
       playingMessage.clearReactions();
     });
   }

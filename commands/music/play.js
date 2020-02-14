@@ -1,4 +1,4 @@
-const { Util } = require("discord.js");
+const { Util, RichEmbed } = require("discord.js");
 const { play } = require("../../include/play");
 const ytdl = require("ytdl-core");
 const YouTubeAPI = require("simple-youtube-api");
@@ -19,17 +19,17 @@ module.exports = {
 
         const channel = message.member.voiceChannel;
 
-        if (!args.length) return message.reply("Usage: /play <YouTube URL | Video Name>").catch(console.error);
-        if (!channel) return message.reply("You need to join a voice channel first!").catch(console.error);
+        if (!args.length) return message.reply("\n \`\`\`Usage: /play <YouTube URL | Video Name>\`\`\`").catch(console.error);
+        if (!channel) return message.reply("\n \`\`\`You need to join a voice channel first!\`\`\`").catch(console.error);
     
         const permissions = channel.permissionsFor(message.client.user);
         if (!permissions.has("CONNECT"))
-          return message.reply("Cannot connect to voice channel, missing permissions");
+          return message.reply("\n \`\`\`Cannot connect to voice channel, missing permissions\`\`\`");
         if (!permissions.has("SPEAK"))
-          return message.reply("I cannot speak in this voice channel, make sure I have the proper permissions!");
+          return message.reply("\n \`\`\`I cannot speak in this voice channel, make sure I have the proper permissions!\`\`\`");
     
         const search = args.join(" ");
-        const videoPattern = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
+        const videoPattern = /^(https?:\/\/)?(www\.)?(youtube\.com|yo  utu\.?be)\/.+$/gi;
         const playlistPattern = /^.*(youtu.be\/|list=)([^#\&\?]*).*/gi;
         const url = args[0];
         const urlValid = videoPattern.test(args[0]);
@@ -59,7 +59,8 @@ module.exports = {
             song = {
               title: songInfo.title,
               url: songInfo.video_url,
-              duration: songInfo.length_seconds
+              duration: songInfo.length_seconds,
+              id: songInfo.video_id
             };
           } catch (error) {
             if (error.message.includes("copyright")) {
@@ -77,7 +78,8 @@ module.exports = {
             song = {
               title: songInfo.title,
               url: songInfo.video_url,
-              duration: songInfo.length_seconds
+              duration: songInfo.length_seconds,
+              id: songInfo.video_id
             };
           } catch (error) {
             console.error(error);
@@ -86,8 +88,12 @@ module.exports = {
     
         if (serverQueue) {
           serverQueue.songs.push(song);
+
+          const embed = new RichEmbed()
+            .setDescription(`✅ **${song.title}** has been added to the queue by ${message.member.displayName}`);
+
           return serverQueue.textChannel
-            .send(`✅ **${song.title}** has been added to the queue by ${message.author}`)
+            .send(embed)
             .catch(console.error);
         } else {
           queueConstruct.songs.push(song);
@@ -100,10 +106,10 @@ module.exports = {
             queueConstruct.connection = await channel.join();
             play(queueConstruct.songs[0], message);
           } catch (error) {
-            console.error(`Could not join voice channel: ${error}`);
+            console.error(`\n \`\`\`Could not join voice channel: ${error}\`\`\``);
             message.client.queue.delete(message.guild.id);
             await channel.leave();
-            return message.channel.send(`Could not join the channel: ${error}`).catch(console.error);
+            return message.channel.send(`\n \`\`\`Could not join the channel: ${error}\`\`\``).catch(console.error);
           }
         }
     }

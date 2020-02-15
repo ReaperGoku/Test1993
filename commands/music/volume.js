@@ -1,6 +1,3 @@
-const { RichEmbed } = require("discord.js");
-const { getMember } = require("../../functions.js");
-
 module.exports = {
     name : "volume",
     aliases : ["vol"],
@@ -24,6 +21,6 @@ module.exports = {
     serverQueue.volume = args[0];
     serverQueue.connection.dispatcher.setVolumeLogarithmic(args[0] / 100);
 
-    return serverQueue.textChannel.send(`\n \`\`\`Volume set to: **${args[0]}%**\`\`\``).catch(console.error);
+    return serverQueue.textChannel.send(`\n \`\`\`Volume set to: ${args[0]}%\`\`\``).catch(console.error);
     }
 };

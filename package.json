@@ -16,6 +16,7 @@
     "dotenv": "^8.2.0",
     "dotenv-flow": "^3.1.0",
     "eslint": "^6.8.0",
+    "ffmpeg-static": "^4.0.1",
     "node-fetch": "^2.6.0",
     "opusscript": "0.0.7",
     "random-puppy": "^1.1.0",

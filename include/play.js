@@ -12,11 +12,13 @@ module.exports = {
     }
 
     try {
-      var stream = await ytdlDiscord(song.url, { filter: "audioonly", quality: "highestaudio" }); //, quality: "highestaudio" 
+      var stream = await ytdlDiscord(song.url, { filter: "audioonly", quality: "highestaudio" }); 
     } catch (error) {
       if (queue) {
         queue.songs.shift();
+
         module.exports.play(queue.songs[0], message);
+        
       }
 
       if (error.message.includes("copyright")) {

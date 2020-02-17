@@ -1,6 +1,6 @@
 const { RichEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
-const { getMember, formatDate } = require("../../functions.js");
+const { getMember, formatDate, joinedPosition} = require("../../functions.js");
 
 module.exports = {
     name : "whois",
@@ -10,36 +10,95 @@ module.exports = {
     usage: "[username | id | mention]",
 
     run : async(client, message, args) => {
-        const member = getMember(message, args.join(" "));
-
+      const member = getMember(message, args.join(" "));
+      const position = joinedPosition(message, member)
+       
         //Member Variable
         const joined = formatDate(member.joinedAt);
         const roles = member.roles
           .filter(r => r.id !== message.guild.id)
-          .map(r => r)
+          .map(r => r.name)
           .join(", ") || "none";
+
+        var permissions = [];
+        var acknowledgements = "None";
+
+        if (member.hasPermission("KICK_MEMBERS")) {
+          permissions.push("Kick Members");
+        }
+      
+        if (member.hasPermission("BAN_MEMBERS")) {
+          permissions.push("Ban Members");
+        }
+      
+        if (member.hasPermission("ADMINISTRATOR")) {
+          permissions.push("Administrator");
+        }
+      
+        if (member.hasPermission("MANAGE_MESSAGES")) {
+          permissions.push("Manage Messages");
+        }
+      
+        if (member.hasPermission("MANAGE_CHANNELS")) {
+          permissions.push("Manage Channels");
+        }
+      
+        if (member.hasPermission("MENTION_EVERYONE")) {
+          permissions.push("Mention Everyone");
+        }
+      
+        if (member.hasPermission("MANAGE_NICKNAMES")) {
+          permissions.push("Manage Nicknames");
+        }
+      
+        if (member.hasPermission("MANAGE_ROLES")) {
+          permissions.push("Manage Roles");
+        }
+      
+        if (member.hasPermission("MANAGE_WEBHOOKS")) {
+          permissions.push("Manage Webhooks");
+        }
+      
+        if (member.hasPermission("MANAGE_EMOJIS")) {
+          permissions.push("Manage Emojis");
+        }
+      
+        if (permissions.length == 0) {
+          permissions.push("No Key Permissions Found");
+        }
+        if (member.hasPermission("KICK_MEMBERS")){
+            acknowledgements = "Server Admin";
+            }
+      
+        if (`<@${member.user.id}>` == message.guild.owner) {
+          acknowledgements = "Server Owner";
+        }   
 
         // User variable
         const created = formatDate(member.user.createdAt);
 
         const embed = new RichEmbed()
-          .setFooter(member.displayName, member.user.displayAvatarURL)
+          .setFooter(client.user.username, client.user.displayAvatarURL)
           .setThumbnail(member.user.displayAvatarURL)
           .setColor(member.displayHexColor === "#000000" ? "#ffffff" : member.displayHexColor)
 
-          .addField('Member Information', stripIndents `**> Display name:** ${member.displayName}
-          **> Joined at:** ${joined}
-          **> Roles:** ${roles}`,true)
+          .addField('Member Information', stripIndents `> Display name: \`${member.displayName}\`
+          > Joined at: \`${joined}\`
+          > Joined Position: \`${position}\`
+          > Acknowledgements: \`${acknowledgements}\``,true)
 
-          .addField('User Information', stripIndents`**> ID:** ${member.user.id}
-          **> Username:** ${member.user.username}
-          **> Discord tag:** ${member.user.tag}
-          **> Created at:** ${created}`,true)
+          .addField('Member Roles & Permissions', stripIndents `> Roles: \`${roles}\`
+          > Permissions: \`${permissions.join(", ")}\``,true) //
+
+          .addField('User Information', stripIndents`> ID: \`${member.user.id}\` 
+          > Username: \`${member.user.username}\`
+          > Discord tag: \`${member.user.tag}\`
+          > Created at: \`${created}\``,true)
 
           .setTimestamp()
 
         if(member.user.presence.game)
-           embed.addField(`Currently playing`, `**> Name:** ${member.user.presence.game.name}`);
+           embed.addField(`Currently playing`, `> Name: ${member.user.presence.game.name}`);
 
         message.channel.send(embed);
     }

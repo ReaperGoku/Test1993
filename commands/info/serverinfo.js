@@ -1,5 +1,6 @@
 const { RichEmbed } = require("discord.js");
-const { getMember } = require("../../functions.js");
+const { stripIndents } = require("common-tags");
+const moment = require("moment");
 
 module.exports = {
     name : "serverinfo",
@@ -7,6 +8,7 @@ module.exports = {
     description : "Return server Information",
 
     run : async(client, message, args) => {
+
 function checkBots(guild) {
     let botCount = 0;
     guild.members.forEach(member => {
@@ -32,22 +34,22 @@ function checkOnlineUsers(guild) {
     return onlineCount;
 }
 
-let sicon = message.guild.iconURL;
+const created = moment(message.guild.createdAt).format("dddd, MMMM Do YYYY, HH:mm:ss");
+
 let serverembed = new RichEmbed()
-    .setAuthor(`${message.guild.name} - Informations`, message.guild.iconURL)
+    .setAuthor(`${message.guild.name}`, message.guild.iconURL)
     .setColor("#15f153")
-    .addField('Server owner', message.guild.owner, true)
-    .addField('Server region', message.guild.region, true)
-    .setThumbnail(sicon)
-    .addField("Server Name", message.guild.name)
-    .addField('Verification level', message.guild.verificationLevel, true)
-    .addField('Channel count', message.guild.channels.size, true)
-    .addField('Total member count', message.guild.memberCount)
-    .addField('Humans', checkMembers(message.guild), true)
-    .addField('Bots', checkBots(message.guild), true)
-    .addField('Online', checkOnlineUsers(message.guild))
-    .setFooter('Guild created at:')
-    .setTimestamp(message.guild.createdAt);
+    .setThumbnail(message.guild.iconURL)
+    .addField('Server Information', stripIndents `> Server owner: \`${message.guild.owner.displayName}\` 
+    > Server region: \`${message.guild.region}\`
+    > Server Name: \`${message.guild.name}\`
+    > Verification level: \`${message.guild.verificationLevel}\`
+    > Channel count: \`${message.guild.channels.size}\`
+    > Total member count: \`${message.guild.memberCount}\`
+    > Humans: \`${checkMembers(message.guild)}\`
+    > Bots: \`${checkBots(message.guild)}\`
+    > Online: \`${checkOnlineUsers(message.guild)}\``,true)
+    .setFooter(`Guild created at: ${created}`);
 
    return message.channel.send(serverembed);
   }

@@ -1,6 +1,7 @@
 const { RichEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
-const { getMember, formatDate, joinedPosition} = require("../../functions.js");
+const { getMember, joinedPosition} = require("../../functions.js");
+const moment = require("moment");
 
 module.exports = {
     name : "whois",
@@ -14,7 +15,7 @@ module.exports = {
       const position = joinedPosition(message, member)
        
         //Member Variable
-        const joined = formatDate(member.joinedAt);
+        const joined = moment(member.joinedAt).format("dddd, MMMM Do YYYY, HH:mm:ss");
         const roles = member.roles
           .filter(r => r.id !== message.guild.id)
           .map(r => r.name)
@@ -75,7 +76,7 @@ module.exports = {
         }   
 
         // User variable
-        const created = formatDate(member.user.createdAt);
+        const created = moment(member.user.createdAt).format("dddd, MMMM Do YYYY, HH:mm:ss");
 
         const embed = new RichEmbed()
           .setFooter(client.user.username, client.user.displayAvatarURL)

@@ -6,6 +6,7 @@ module.exports = {
     const queue = message.client.queue.get(message.guild.id);
 
     if (!song) {
+      queue.channel.leave(60000);
       message.client.queue.delete(message.guild.id);
       return queue.textChannel.send("\n \`\`\`🚫 Music queue ended.\`\`\`").catch(console.error);
     }

@@ -1,4 +1,4 @@
-const ytdlDiscord = require("ytdl-core-discord");
+const ytdl= require("ytdl-core");
 const { RichEmbed } = require("discord.js");
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
     }
 
     try {
-      var stream = await ytdlDiscord(song.url);  //, { filter: "audioonly", quality: "highestaudio" }
+      var stream = await ytdl(song.url);  //, { filter: "audioonly", quality: "highestaudio" }
     } catch (error) {
       if (queue) {
         queue.songs.shift();
@@ -30,7 +30,7 @@ module.exports = {
     }
 
     const dispatcher = queue.connection
-      .playOpusStream(stream)
+      .playStream(stream)
       .on("end", () => {
         if (queue.loop) {
           // if loop is on, push the song back at the end of the queue

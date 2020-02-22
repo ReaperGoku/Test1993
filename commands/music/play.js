@@ -47,7 +47,8 @@ module.exports = {
           songs: [],
           loop: false,
           volume: 100,
-          playing: true
+          playing: true,
+          autoplay: false
         };
     
         let songInfo = null;
@@ -93,7 +94,7 @@ module.exports = {
             .setDescription(`✅ ${song.title} has been added to the queue by ${message.member.displayName}`);
 
           return serverQueue.textChannel
-            .send(embed)
+            .send(`\`\`\`✅ ${song.title} has been added to the queue by ${message.member.displayName}\`\`\``)
             .catch(console.error);
         } else {
           queueConstruct.songs.push(song);

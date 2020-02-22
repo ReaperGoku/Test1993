@@ -41,7 +41,8 @@ module.exports = {
       songs: [],
       loop: false,
       volume: 100,
-      playing: true
+      playing: true,
+      autoplay: false
     };
 
     let song = null;

@@ -1,12 +1,13 @@
 const ytdl= require("ytdl-core");
 const { RichEmbed } = require("discord.js");
+const{autoplay} = require("../musicFunctions.js")
 
 module.exports = {
   async play(song, message) {
     const queue = message.client.queue.get(message.guild.id);
 
     if (!song) {
-      queue.channel.leave(60000);
+      queue.channel.leave(600000);
       message.client.queue.delete(message.guild.id);
       return queue.textChannel.send("\n \`\`\`🚫 Music queue ended.\`\`\`").catch(console.error);
     }
@@ -39,10 +40,15 @@ module.exports = {
           let lastSong = queue.songs.shift();
           queue.songs.push(lastSong);
           module.exports.play(queue.songs[0], message);
+        } else if(queue.autoplay && song ) {
+
+          autoplay(song,message);
+          module.exports.play(queue.songs[0], message); 
+
         } else {
-          // Recursively play the next song
-          queue.songs.shift();
-          module.exports.play(queue.songs[0], message);
+           // Recursively play the next song
+           queue.songs.shift();
+           module.exports.play(queue.songs[0], message);        
         }
       })
       .on("error", console.error);

@@ -4,9 +4,13 @@ module.exports = {
     category: "music",
     description : "Show the music queue and now playing.",
 
-    run : async(client, message, args) => {
+    run : async(client, message) => {
+
+      if (!message.member.voiceChannel)
+      return message.reply("\`\`\`You need to join a voice channel first!\`\`\`").catch(console.error);
+
         const serverQueue = message.client.queue.get(message.guild.id);
-    if (!serverQueue) return message.reply("\n \`\`\`There is nothing playing.\`\`\`").catch(console.error);
+    if (!serverQueue) return message.reply("\`\`\`There is nothing playing.\`\`\`").catch(console.error);
     return message
       .reply("\n"+
         `\`\`\`📃 **Song queue**

@@ -8,8 +8,16 @@ module.exports = {
 
     run : async(client, message, args) => {
 
-        async function automeme() {
-        const channel = message.member.guild.channels.get(`547313757869703186`);
+      const permission = message.channel.permissionsFor(message.client.user);
+
+      try{
+
+        if(!permission.has("MANAGE_MESSAGES")) {
+          return message.reply("\`\`\`Don't have the permissions to Manage Messages!\`\`\`");
+        } else if(!permission.has("EMBED_LINKS")){
+          return message.reply("\`\`\`Don't have the permissions to send Embed Links!\`\`\`");
+        } else {
+
         const subReddits = ["denkmeme", "meme", "me_irl"];
         const random = subReddits[Math.floor(Math.random() * subReddits.length)];
         
@@ -20,10 +28,11 @@ module.exports = {
         .setURL(`http://reddit.com/r/${random}`)
         
         message.delete();
-        channel.send(embed);
-          
-        setTimeout(automeme, 120*1000)
-      } 
-      automeme();
+        message.channel.send(embed);
+        };
+
+      } catch(err) {
+        console.log(err);
+      }
     }
 };

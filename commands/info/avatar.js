@@ -9,20 +9,28 @@ module.exports = {
     usage: "[username | id | mention]",
 
     run : async(client, message, args) => {
+      const permission = message.channel.permissionsFor(message.client.user);
+      
+      if(!permission.has("EMBED_LINKS")){
+        return message.reply("\`\`\`Don't have the permissions to send Embed Links!\`\`\`");
+      } else {
         const member = getMember(message, args.join(" "));
-
-          var avatar = new RichEmbed()
-              .setTitle("Hi Beautiful")
-              .setImage(member.user.avatarURL)
-              .setFooter(member.user.tag)
-              .setColor("00FFFF");
-        
-            message.channel.send(avatar).then(async embedMessage => {
-              await embedMessage.react("👍");
-              await embedMessage.react("😱");
-              await embedMessage.react("❤");
-              await embedMessage.react("😡");
-            });
-        
+        var avatar = new RichEmbed()
+        .setTitle("Hi Beautiful")
+        .setImage(member.user.avatarURL)
+        .setFooter(member.user.tag)
+        .setColor("00FFFF");
+      
+      message.channel.send(avatar).then(async embedMessage => {
+        try{
+          await embedMessage.react("👍");
+          await embedMessage.react("😱");
+          await embedMessage.react("❤");
+          await embedMessage.react("😡");
+        } catch(error) {
+          console.log(error);
+        }
+      });
     }
-};
+    }
+  };

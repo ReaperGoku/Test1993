@@ -6,14 +6,19 @@ module.exports = {
     category: "fun",
     description : "Heads or Tails",
 
-    run : async(client, message, args) => {
+    run : (client, message, args) => {
 
-        var flipcoin = ["heads", "tails"];
+        const permission = message.channel.permissionsFor(message.client.user)
+        if(!permission.has("MANAGE_MESSAGES")){
+            return message.reply("\`\`\`Don't have the permissions to send Embed Links!\`\`\`");
+        } else {
+        message.delete(10000);
 
-        const member = getMember(message, args.join(" "));
+        var flipcoin = ["Heads", "Tails"];
 
         var randomIndex = Math.floor(Math.random() * flipcoin.length); 
 
-    message.channel.send(`<@${member.user.id}> `+ flipcoin[randomIndex]);
+        message.channel.send(`\`\`\`${flipcoin[randomIndex]}\`\`\``);
+        }
     }
 };

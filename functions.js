@@ -33,5 +33,30 @@ module.exports = {
          //Loop though every element
          if (arr[i].id == ID) return ++i;// When you find the user, return it's position
         }
-    } 
+    },
+    checkBots: function(message) {
+        const guild = message.guild;
+        let botCount = 0;
+        guild.members.forEach(member => {
+            if(member.user.bot) botCount++;
+          });
+          return botCount;
+        },
+    checkMembers:    function(message) {
+        const guild = message.guild;
+        let memberCount = 0;
+        guild.members.forEach(member => {
+            if(!member.user.bot) memberCount++;
+        });
+        return memberCount;
+    },
+    checkOnlineUsers: function(message) {
+        const guild = message.guild;
+        let onlineCount = 0;
+        guild.members.forEach(member => {
+            if(member.user.presence.status === "online")
+            onlineCount++;
+        });
+        return onlineCount;
+    }
 }

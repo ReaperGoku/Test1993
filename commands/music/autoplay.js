@@ -8,15 +8,18 @@ module.exports = {
 
     run : async(client, message, song) => {
 
-    const serverQueue = message.client.queue.get(message.guild.id);
+      if (!message.member.voiceChannel)
+      return message.reply("\`\`\`You need to join a voice channel first!\`\`\`").catch(console.error);
 
-    if (!serverQueue) return message.reply("\n \`\`\`There is nothing playing.\`\`\`").catch(console.error);
+      const serverQueue = message.client.queue.get(message.guild.id);
 
-    autoplay(song,message);
+      if (!serverQueue) return message.reply("\`\`\`There is nothing playing.\`\`\`").catch(console.error);
 
-    // toggle from false to true and reverse
-    serverQueue.autoplay = !serverQueue.autoplay;
-    return serverQueue.textChannel
+      autoplay(song,message).catch(console.error);
+
+      // toggle from false to true and reverse
+      serverQueue.autoplay = !serverQueue.autoplay;
+      return serverQueue.textChannel
       .send(`\n \`\`\`Autoplay is now ${serverQueue.autoplay ? "ON" : "OFF"}\`\`\``)
       .catch(console.error);
     }

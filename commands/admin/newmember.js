@@ -3,7 +3,8 @@ module.exports = {
     aliases : ["nmemb"],
     description : "emiter",
 
-    run : async(client, message, args) => {
+    run : (client, message, args) => {
+        
         client.emit('guildMemberAdd', message.member);
     }
 };

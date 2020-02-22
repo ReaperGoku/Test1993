@@ -7,14 +7,21 @@ module.exports = {
     usage: "<Message>",
 
     run : async(client, message, args) => {
-        if(message.deletable) message.delete();
+        try{
+        const permission = message.channel.permissionsFor(message.client.user)
 
+        if(!permission.has("MANAGE_MESSAGES")){
+            return message.reply("\`\`\`Don't have the permissions to Manage Messages!\`\`\`");
+        }
         if(!args[0]){
-          message.reply("Please specify input").then(m => m.delete(3000));
-         } else {
-               message.delete();
-  
-               message.channel.send(args.join(" "));
-            };
+            return message.reply("\`\`\`Please specify input\`\`\`").then(m => m.delete(10000));          
+        } else {
+            message.delete(); 
+            message.channel.send(args.join(" "));      
+        };
+    } catch(error) {
+        console.log(error);
+    }
+        
     }
 };

@@ -47,7 +47,7 @@ module.exports = {
     
             const ap = await fetch(requestUrl)
             .then(res => res.json())
-            .then(json => json.items[1].id);
+            .then(json => json.items[2].id);
 
             songInfo = await ytdl.getInfo(ap.videoId);
             song = {

@@ -1,7 +1,7 @@
 const { RichEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
 const moment = require("moment");
-const{checkBots, checkMembers} = require("../../functions.js")
+const{checkBots, checkMembers, checkOnlineUsers} = require("../../functions.js")
 
 module.exports = {
     name : "serverinfo",
@@ -29,7 +29,7 @@ module.exports = {
             > Total member count: \`${message.guild.memberCount}\`
             > Humans: \`${checkMembers(message)}\`
             > Bots: \`${checkBots(message)}\`
-            > Online: \`${checkOnlineUsers(message.guild)}\``,true)
+            > Online: \`${checkOnlineUsers(message)}\``,true)
             .setFooter(`Guild created at: ${created}`);
             return message.channel.send(serverembed);
         }

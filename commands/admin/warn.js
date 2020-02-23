@@ -5,7 +5,7 @@ module.exports = {
     aliases : ["w"],
     category: "admin",
     description : "Warn a mentioned member",
-    usage: "<Member>",
+    usage: "<Member & reason>",
 
     run : async(client, message, args) => {
         try{

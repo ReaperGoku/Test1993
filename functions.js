@@ -1,5 +1,6 @@
 module.exports = {
     getMember: function(message, toFind = ""){
+        
         toFind = toFind.toLowerCase();
 
         let target = message.guild.members.get(toFind);

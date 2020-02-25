@@ -13,7 +13,7 @@ module.exports = {
     }
 
     try {
-      var stream = await ytdl(song.url);  //, { filter: "audioonly", quality: "highestaudio" }
+      var stream = await ytdl(song.url, { filter: "audioonly", quality: "highestaudio" });
     } catch (error) {
       if (queue) {
         queue.songs.shift();

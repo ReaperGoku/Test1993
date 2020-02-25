@@ -1,5 +1,6 @@
 module.exports = {
     name : "stop",
+    aliases : ["dc","leave"],
     category: "music",
     description : "Stops the music",
 
@@ -12,6 +13,6 @@ module.exports = {
     
         serverQueue.songs = [];
         serverQueue.connection.dispatcher.end();
-        serverQueue.textChannel.send(`\`\`\`${message.author} ⏹ stopped the music!\`\`\``).catch(console.error);
+        serverQueue.textChannel.send(`\`\`\`${message.member.displayName} ⏹ stopped the music!\`\`\``).catch(console.error);
     }
 };

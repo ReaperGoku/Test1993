@@ -1,26 +1,28 @@
+const { RichEmbed } = require("discord.js");
+const { getMember } = require("../../functions.js");
+
 module.exports = {
-    name : "remove",
-    aliases : ["re"],
+    name : "reset",
     category: "music",
-    description : "Remove song from the queue",
-    usage: "[ | ]",
+    description : "Reset Music Bot",
+    
 
     run : async(client, message, args) => {
 
+        if(!message.member.hasPermission("KICK_MEMBERS")) return message.reply("You don't have premission to do that!");
+
         const serverQueue = message.client.queue.get(message.guild.id);
         const memberChannel = message.member.voiceChannel;
-
-        if (!serverQueue) return message.channel.send("\n \`\`\`There is no queue.\`\`\`").catch(console.error);
         
+        if (!serverQueue)
+        return message.reply("\`\`\`There is nothing playing.\`\`\`").catch(console.error);
+
         if (!memberChannel)
         return message.reply("\`\`\`You need to join a voice channel first!\`\`\`").catch(console.error);
   
         if (memberChannel != serverQueue.channel)
         return message.reply("\`\`\`You need to be in same voice channel!\`\`\`").catch(console.error);
         
-        if (!args.length) return message.reply("\n \`\`\`Usage: /remove <Queue Number>\`\`\`");
-    
-        const song = serverQueue.songs.splice(args[0] - 1, 1);
-        serverQueue.textChannel.send(`\`\`\`${message.author} ❌ removed ${song[0].title} from the queue.\`\`\``).catch(console.error);
+        message.client.queue.delete(message.guild.id);     
     }
 };

@@ -5,21 +5,20 @@ const{autoplay} = require("../musicFunctions.js")
 module.exports = {
   async play(song, message) {
     const queue = message.client.queue.get(message.guild.id);
-
+    const memberChannel = message.member.voiceChannel;
+    
     if (!song) {
-      queue.channel.leave(600000);
+      queue.channel.leave();
       message.client.queue.delete(message.guild.id);
       return queue.textChannel.send("\n \`\`\`🚫 Music queue ended.\`\`\`").catch(console.error);
     }
-
+    
     try {
       var stream = await ytdl(song.url, { filter: "audioonly", quality: "highestaudio" });
     } catch (error) {
       if (queue) {
         queue.songs.shift();
-
-        module.exports.play(queue.songs[0], message);
-        
+        module.exports.play(queue.songs[0], message);        
       }
 
       if (error.message.includes("copyright")) {
@@ -84,6 +83,7 @@ module.exports = {
           break;
 
         case "⏸":
+          
           if (!queue.playing) break;
           queue.playing = false;
           queue.connection.dispatcher.pause();
@@ -91,13 +91,15 @@ module.exports = {
           break;
 
         case "▶":
+          
           if (queue.playing) break;
           queue.playing = true;
           queue.connection.dispatcher.resume();
           queue.textChannel.send(`\`\`\`▶ resumed the music!\`\`\``).catch(console.error);
           break;
 
-        case "⏹":
+        case "⏹":          
+
           queue.songs = [];
           queue.connection.dispatcher.end();
           queue.textChannel.send(`\`\`\`⏹ stopped the music!\`\`\``).catch(console.error);

@@ -9,7 +9,7 @@ module.exports = {
         .setTitle("ꜱɪᴅᴬᵏᵃᵗˢᵘᵏⁱ")
         .setColor("00FFFF")
         .setThumbnail(member.user.avatarURL)
-        .addField("IGN:", " ꜱɪᴅᴬᵏᵃᵗˢᵘᵏⁱ", true)
+        .addField("IGN:", "ᴀᴋ❖sɪᴅᴅʜᴀɴᴛツ", true)
         .addField("UID:", 186663223, true)
         .addField("Guild:", "Âкατsuкi", true)
         .addField("Favorite Weapon:", "AK & MP40", true);

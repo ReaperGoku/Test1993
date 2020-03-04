@@ -57,69 +57,69 @@ module.exports = {
       .setTitle(`🎶 Started playing: ${song.title}`)
       .setThumbnail(`https://img.youtube.com/vi/${song.id}/maxresdefault.jpg`);
 
-      var playingMessage = await queue.textChannel.send(embed); //${song.url}
-      await playingMessage.react("⏭");
-      await playingMessage.react("⏸");
-      await playingMessage.react("▶");
-      await playingMessage.react("⏹");
+      // var playingMessage = await queue.textChannel.send(embed);
+      // await playingMessage.react("⏭");
+      // await playingMessage.react("⏸");
+      // await playingMessage.react("▶");
+      // await playingMessage.react("⏹");
     } catch (error) {
       console.error(error);
     }
 
-    const filter = (reaction, user) => user.id !== message.client.user.id;
-    const collector = playingMessage.createReactionCollector(filter, { time: 1800000 });
+    // const filter = (reaction, user) => user.id !== message.client.user.id;
+    // const collector = playingMessage.createReactionCollector(filter, { time: 1800000 });
 
-    collector.on("collect", (reaction, user) => {
-      // Stop if there is no queue on the server
-      if (!queue) return;
+    // collector.on("collect", (reaction, user) => {
+    //   // Stop if there is no queue on the server
+    //   if (!queue) return;
       
 
-      switch (reaction.emoji.name) {
-        case "⏭":
-          if(!message.member.voiceChannelID) break;
-          if(message.member.voiceChannelID != reaction.message.member.voiceChannelID) break;
-          queue.connection.dispatcher.end();
-          queue.textChannel.send(`\`\`\`⏩ skipped the song\`\`\``).catch(console.error);
-          collector.stop();
-          playingMessage.clearReactions();
-          break;
+    //   switch (reaction.emoji.name) {
+    //     case "⏭":
+    //       if(!message.member.voiceChannelID) break;
+    //       if(message.member.voiceChannelID != reaction.message.member.voiceChannelID) break;
+    //       queue.connection.dispatcher.end();
+    //       queue.textChannel.send(`\`\`\`⏩ skipped the song\`\`\``).catch(console.error);
+    //       collector.stop();
+    //       playingMessage.clearReactions();
+    //       break;
 
-        case "⏸":
-          console.log(message.users)
-          // if(!message.member.voiceChannelID) break;
-          // if(message.member.voiceChannelID != reaction.message.member.voiceChannelID) break;
-          if (!queue.playing) break;
-          queue.playing = false;
-          queue.connection.dispatcher.pause();
-          queue.textChannel.send(`\`\`\`⏸ paused the music.\`\`\``).catch(console.error);
-          break;
+    //     case "⏸":
+    //       console.log(message.users)
+    //       // if(!message.member.voiceChannelID) break;
+    //       // if(message.member.voiceChannelID != reaction.message.member.voiceChannelID) break;
+    //       if (!queue.playing) break;
+    //       queue.playing = false;
+    //       queue.connection.dispatcher.pause();
+    //       queue.textChannel.send(`\`\`\`⏸ paused the music.\`\`\``).catch(console.error);
+    //       break;
 
-        case "▶":
-          if(!message.member.voiceChannelID) break;
-          if(message.member.voiceChannelID != reaction.message.member.voiceChannelID) break;
-          if (queue.playing) break;
-          queue.playing = true;
-          queue.connection.dispatcher.resume();
-          queue.textChannel.send(`\`\`\`▶ resumed the music!\`\`\``).catch(console.error);
-          break;
+    //     case "▶":
+    //       if(!message.member.voiceChannelID) break;
+    //       if(message.member.voiceChannelID != reaction.message.member.voiceChannelID) break;
+    //       if (queue.playing) break;
+    //       queue.playing = true;
+    //       queue.connection.dispatcher.resume();
+    //       queue.textChannel.send(`\`\`\`▶ resumed the music!\`\`\``).catch(console.error);
+    //       break;
 
-        case "⏹": 
-          if(!message.member.voiceChannelID) break;
-          if(message.member.voiceChannelID != reaction.message.member.voiceChannelID) break;
-          queue.songs = [];
-          queue.connection.dispatcher.end();
-          queue.textChannel.send(`\`\`\`⏹ stopped the music!\`\`\``).catch(console.error);
-          collector.stop();
-          playingMessage.clearReactions();
-          break;
+    //     case "⏹": 
+    //       if(!message.member.voiceChannelID) break;
+    //       if(message.member.voiceChannelID != reaction.message.member.voiceChannelID) break;
+    //       queue.songs = [];
+    //       queue.connection.dispatcher.end();
+    //       queue.textChannel.send(`\`\`\`⏹ stopped the music!\`\`\``).catch(console.error);
+    //       collector.stop();
+    //       playingMessage.clearReactions();
+    //       break;
 
-        default:
-          break;
-      }
-    });
+    //     default:
+    //       break;
+    //   }
+    // });
 
-    collector.on("end", () => {
-      playingMessage.clearReactions();
-    });
+    // collector.on("end", () => {
+    //   playingMessage.clearReactions();
+    // });
   }
 };

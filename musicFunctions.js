@@ -70,4 +70,9 @@ module.exports = {
         }
       }
     },
+    checkMemberChannel: async function(queue, user){
+      console.log(collector.member.GuildMember.voiceChannelID);
+      const checkMembChannel = queue.guild.members.get(user.id).voiceChannel;
+      return checkMembChannel;
+    }
   }

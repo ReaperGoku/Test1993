@@ -41,6 +41,7 @@ module.exports = {
     
         const serverQueue = message.client.queue.get(message.guild.id);
         const queueConstruct = {
+          guild : message.guild,
           textChannel: message.channel,
           channel : channel,
           connection: null,

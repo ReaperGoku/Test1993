@@ -1,11 +1,10 @@
 const ytdl= require("ytdl-core");
 const { RichEmbed } = require("discord.js");
-const{autoplay} = require("../musicFunctions.js")
+const{autoplay, checkMemberChannel} = require("../musicFunctions.js")
 
 module.exports = {
   async play(song, message) {
     const queue = message.client.queue.get(message.guild.id);
-    const memberChannel = message.member.voiceChannel;
     
     if (!song) {
       queue.channel.leave();
@@ -73,9 +72,12 @@ module.exports = {
     collector.on("collect", (reaction, user) => {
       // Stop if there is no queue on the server
       if (!queue) return;
+      
 
       switch (reaction.emoji.name) {
         case "⏭":
+          if(!message.member.voiceChannelID) break;
+          if(message.member.voiceChannelID != reaction.message.member.voiceChannelID) break;
           queue.connection.dispatcher.end();
           queue.textChannel.send(`\`\`\`⏩ skipped the song\`\`\``).catch(console.error);
           collector.stop();
@@ -83,7 +85,9 @@ module.exports = {
           break;
 
         case "⏸":
-          
+          console.log(message.users)
+          // if(!message.member.voiceChannelID) break;
+          // if(message.member.voiceChannelID != reaction.message.member.voiceChannelID) break;
           if (!queue.playing) break;
           queue.playing = false;
           queue.connection.dispatcher.pause();
@@ -91,15 +95,17 @@ module.exports = {
           break;
 
         case "▶":
-          
+          if(!message.member.voiceChannelID) break;
+          if(message.member.voiceChannelID != reaction.message.member.voiceChannelID) break;
           if (queue.playing) break;
           queue.playing = true;
           queue.connection.dispatcher.resume();
           queue.textChannel.send(`\`\`\`▶ resumed the music!\`\`\``).catch(console.error);
           break;
 
-        case "⏹":          
-
+        case "⏹": 
+          if(!message.member.voiceChannelID) break;
+          if(message.member.voiceChannelID != reaction.message.member.voiceChannelID) break;
           queue.songs = [];
           queue.connection.dispatcher.end();
           queue.textChannel.send(`\`\`\`⏹ stopped the music!\`\`\``).catch(console.error);

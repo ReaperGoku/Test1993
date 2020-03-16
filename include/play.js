@@ -1,6 +1,6 @@
 const ytdl= require("ytdl-core-discord");
 const { MessageEmbed } = require("discord.js");
-const{autoplay, checkMemberChannel} = require("../musicFunctions.js")
+const{ autoplay } = require("../musicFunctions.js")
 
 module.exports = {
   async play(song, message) {

@@ -3,13 +3,13 @@ module.exports = {
         
         toFind = toFind.toLowerCase();
 
-        let target = message.guild.members.get(toFind);
+        let target = message.guild.members.cache.get(toFind);
 
         if(!target && message.mentions.members)
           target = message.mentions.members.first();
           
         if(!target && toFind){
-            target = message.guild.members.find(member => {
+            target = message.guild.members.cache.find(member => {
                 return member.displayName.toLowerCase().includes(toFind) ||
                 member.user.tag.toLowerCase().includes(toFind)
             });
@@ -27,7 +27,7 @@ module.exports = {
         let ID = member.id;
         if (!guild.member(ID)) return; // It will return undefined if the ID is not valid
 
-       let arr = guild.members.array(); // Create an array with every member
+       let arr = guild.members.cache.array() //.array(); // Create an array with every member
        arr.sort((a, b) => a.joinedAt - b.joinedAt); // Sort them by join date
 
        for (let i = 0; i < arr.length; i++) {
@@ -38,7 +38,7 @@ module.exports = {
     checkBots: function(message) {
         const guild = message.guild;
         let botCount = 0;
-        guild.members.forEach(member => {
+        guild.members.cache.forEach(member => {
             if(member.user.bot) botCount++;
           });
           return botCount;
@@ -46,7 +46,7 @@ module.exports = {
     checkMembers:    function(message) {
         const guild = message.guild;
         let memberCount = 0;
-        guild.members.forEach(member => {
+        guild.members.cache.forEach(member => {
             if(!member.user.bot) memberCount++;
         });
         return memberCount;
@@ -54,7 +54,7 @@ module.exports = {
     checkOnlineUsers: function(message) {
         const guild = message.guild;
         let onlineCount = 0;
-        guild.members.forEach(member => {
+        guild.members.cache.forEach(member => {
             if(member.user.presence.status === "online")
             onlineCount++;
         });

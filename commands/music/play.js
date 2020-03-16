@@ -1,4 +1,4 @@
-const { Util, RichEmbed } = require("discord.js");
+const { Util, MessageEmbed } = require("discord.js");
 const { play } = require("../../include/play");
 const ytdl = require("ytdl-core");
 const YouTubeAPI = require("simple-youtube-api");
@@ -17,7 +17,7 @@ module.exports = {
 
         const youtube = new YouTubeAPI(config.YOUTUBE_API_KEY);
 
-        const channel = message.member.voiceChannel;
+        const channel = message.member.voice.channel;
 
         if (!args.length) return message.reply("\`\`\`Usage: /play <YouTube URL | Video Name>\`\`\`").catch(console.error);
         if (!channel) return message.reply("\`\`\`You need to join a voice channel first!\`\`\`").catch(console.error);
@@ -29,21 +29,21 @@ module.exports = {
           return message.reply("\`\`\`I cannot speak in this voice channel, make sure I have the proper permissions!\`\`\`");
     
         const search = args.join(" ");
-        const videoPattern = /^(https?:\/\/)?(www\.)?(youtube\.com|yo  utu\.?be)\/.+$/gi;
-        const playlistPattern = /^.*(youtu.be\/|list=)([^#\&\?]*).*/gi;
+        const videoPattern = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
+        const playlistPattern = /^(?!.*\?.*\bv=)https:\/\/www\.youtube\.com\/.*\?.*\blist=.*$/; ///^.*(youtu.be\/|list=)([^#\&\?]*).*/gi;
         const url = args[0];
         const urlValid = videoPattern.test(args[0]);
     
         // Start the playlist if playlist url was provided
         if (!videoPattern.test(args[0]) && playlistPattern.test(args[0])) {
-          return message.client.commands.get("playlist").execute(message, args);
+          return message.client.commands.get("playlist").run(client, message, args);
         }
     
         const serverQueue = message.client.queue.get(message.guild.id);
         const queueConstruct = {
           guild : message.guild,
           textChannel: message.channel,
-          channel : channel,
+          channel,
           connection: null,
           songs: [],
           loop: false,

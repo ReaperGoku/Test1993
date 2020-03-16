@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
 const { getMember, joinedPosition} = require("../../functions.js");
 const moment = require("moment");
@@ -16,13 +16,13 @@ module.exports = {
        
         //Member Variable
         const joined = moment(member.joinedAt).format("dddd, MMMM Do YYYY, HH:mm:ss");
-        const roles = member.roles
+        const roles = member.roles.cache
           .filter(r => r.id !== message.guild.id)
           .map(r => r.name)
           .join(", ") || "none";
 
         var permissions = [];
-        var acknowledgements = "None";
+        var acknowledgements = "Member";
 
         if (member.hasPermission("KICK_MEMBERS")) {
           permissions.push("Kick Members");
@@ -69,18 +69,18 @@ module.exports = {
         }
         if (member.hasPermission("KICK_MEMBERS")){
             acknowledgements = "Server Admin";
-            }
+          }
       
-        if (`<@${member.user.id}>` == message.guild.owner) {
+        if (member.user.id == message.guild.owner.id) {
           acknowledgements = "Server Owner";
-        }   
+        }
 
         // User variable
         const created = moment(member.user.createdAt).format("dddd, MMMM Do YYYY, HH:mm:ss");
 
-        const embed = new RichEmbed()
-          .setFooter(client.user.username, client.user.displayAvatarURL)
-          .setThumbnail(member.user.displayAvatarURL)
+        const embed = new MessageEmbed()
+          .setFooter(client.user.username, client.user.displayAvatarURL( {dynamic: true} ))
+          .setThumbnail(member.user.displayAvatarURL( {dynamic: true} ))
           .setColor(member.displayHexColor === "#000000" ? "#ffffff" : member.displayHexColor)
 
           .addField('Member Information', stripIndents `> Display name: \`${member.displayName}\`

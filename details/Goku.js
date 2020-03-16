@@ -1,9 +1,9 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
     name : "goku",
     run : async(client, message) => {
-        let goku = new RichEmbed()
+        let goku = new MessageEmbed()
         .setTitle("Rєαpєr☁GoKυ")
         .setColor("00FFFF")
         .setThumbnail(

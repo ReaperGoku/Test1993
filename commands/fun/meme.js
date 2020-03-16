@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const randomPuppy = require ("random-puppy");
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
         const random = subReddits[Math.floor(Math.random() * subReddits.length)];
         
         const img = await randomPuppy(random);
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
         .setColor("random")
         .setImage(img)
         .setURL(`http://reddit.com/r/${random}`)

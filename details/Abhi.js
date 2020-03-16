@@ -1,15 +1,15 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
     name : "abhi",
     run : async(client, message) => {
 
-        const member = message.guild.members.get("379884944823943168");
+        const member = message.guild.members.cache.get("379884944823943168");
 
-        var abhi = new RichEmbed()
+        var abhi = new MessageEmbed()
         .setTitle(" ᴀʙʜɪᴬᵏᵃᵗˢᵘᵏⁱ")
         .setColor("00FFFF")
-        .setThumbnail(member.user.avatarURL)
+        .setThumbnail(member.user.avatarURL({ format: 'png', dynamic: true }))
         .addField("IGN:", " ᴀʙʜɪᴬᵏᵃᵗˢᵘᵏⁱ", true)
         .addField("UID:", "40331033", true)
         .addField("Guild:", "Âкατsuкi", true)

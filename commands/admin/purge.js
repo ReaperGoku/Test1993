@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { getMember } = require("../../functions.js");
 
 module.exports = {
@@ -25,7 +25,7 @@ module.exports = {
          return message.channel.send("\`\`\`Please provide a number between 2 and 100 for the number of messages to delete\`\`\`");
               
          message.delete();
-         const fetched = await message.channel.fetchMessages({limit: deleteCount});
+         const fetched = await message.channel.messages.fetch({limit: deleteCount});
          message.channel.bulkDelete(fetched).catch(error => message.reply(`\`\`\`Couldn't delete messages because of: ${error}\`\`\``));
   
          message.channel.send(`\`\`\`${message.member.displayName} has deleted ${deleteCount} messages\`\`\``)

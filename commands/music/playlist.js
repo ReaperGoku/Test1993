@@ -16,7 +16,7 @@ module.exports = {
 
         const youtube = new YouTubeAPI(config.YOUTUBE_API_KEY);
 
-        const channel = message.member.voiceChannel;
+        const channel = message.member.voice.channel;
 
     if (!args.length)
       return message.reply("\`\`\`Usage: /playlist <YouTube Playlist URL | Playlist Name>\`\`\`").catch(console.error);

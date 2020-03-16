@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
     name : "warn",
@@ -16,7 +16,7 @@ module.exports = {
          if (message.mentions.users.size < 1) return message.reply('You must mention someone to warn them.');
          if (reason.length < 1) return message.reply('You must have a reason for the warning.');
       
-         let dmsEmbed = new RichEmbed()
+         let dmsEmbed = new MessageEmbed()
          .setTitle("Warn")
          .setColor("#00ff00")
          .setDescription(`You have been warned on \`${message.guild.name}\``)

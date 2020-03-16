@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const weather = require("weather-js");
 
 module.exports = {
@@ -24,7 +24,7 @@ module.exports = {
         var current = result[0].current;
         var location = result[0].location;
         
-        const weatherReport = new RichEmbed()
+        const weatherReport = new MessageEmbed()
         .setDescription(`**${current.skytext}**`)
         .setAuthor(`Weather for ${current.observationpoint}`)
         .setThumbnail(current.imageUrl)

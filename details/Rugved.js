@@ -1,14 +1,14 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
     name : "rugved",
     run : async(client, message) => {
-        const member = message.guild.members.get("534631377635770379");
+        const member = message.guild.members.cache.get("534631377635770379");
 
-        var rug = new RichEmbed()
+        var rug = new MessageEmbed()
         .setTitle("Rugved004")
         .setColor("00FFFF")
-        .setThumbnail(member.user.avatarURL)
+        .setThumbnail(member.user.avatarURL({ format: 'png', dynamic: true }))
         .addField("IGN:", " Rugved004", true)
         .addField("UID:", 311793760, true)
         .addField("Guild:", "Âкατsυкiᴵᴺ", true)

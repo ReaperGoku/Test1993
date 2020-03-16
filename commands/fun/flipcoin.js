@@ -12,7 +12,7 @@ module.exports = {
         if(!permission.has("MANAGE_MESSAGES")){
             return message.reply("\`\`\`Don't have the permissions to send Embed Links!\`\`\`");
         } else {
-        message.delete(10000);
+        message.delete({ timeout: 3000} );
 
         var flipcoin = ["Heads", "Tails"];
 

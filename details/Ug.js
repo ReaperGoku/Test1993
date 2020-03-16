@@ -1,11 +1,11 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
     name : "ug",
     run : async(client, message) => {
-        const member = message.guild.members.get("425295803305820160");
+        const member = message.guild.members.cache.get("425295803305820160");
 
-        var ug = new RichEmbed()
+        var ug = new MessageEmbed()
         .setTitle("UnGraduate Gamer")
         .setColor("00FFFF")
         .addField("IGN:", " Inhibitor007", true)

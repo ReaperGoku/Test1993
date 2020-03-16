@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
 const moment = require("moment");
 const{checkBots, checkMembers, checkOnlineUsers} = require("../../functions.js")
@@ -17,7 +17,7 @@ module.exports = {
 
             const created = moment(message.guild.createdAt).format("dddd, MMMM Do YYYY, HH:mm:ss");
             
-            let serverembed = new RichEmbed()
+            let serverembed = new MessageEmbed()
             .setAuthor(`${message.guild.name}`, message.guild.iconURL)
             .setColor("#15f153")
             .setThumbnail(message.guild.iconURL)

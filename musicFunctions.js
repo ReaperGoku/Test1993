@@ -7,7 +7,7 @@ module.exports = {
       YT_ENDPOINT : "https://www.googleapis.com/youtube/v3/",
       YT_TOKEN: process.env.YOUTUBE_API_KEY,
     };
-    const channel = message.member.voice.channel;
+    const channel = message.member.voice;
     if (!channel) return message.reply("\n \`\`\`You need to join a voice channel first!\`\`\`").catch(console.error);
 
     const serverQueue = message.client.queue.get(message.guild.id);

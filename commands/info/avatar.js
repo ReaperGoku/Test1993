@@ -18,7 +18,7 @@ module.exports = {
         const member = getMember(message, args.join(" "));
         var avatar = new MessageEmbed()
         .setTitle("Hi Beautiful")
-        .setImage(member.user.avatarURL({ format: 'png', dynamic: true }))
+        .setImage(member.user.avatarURL({ format: 'png', dynamic: true , size : 1024 }))
         .setFooter(member.user.tag)
         .setColor("00FFFF");
       

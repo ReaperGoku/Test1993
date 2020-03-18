@@ -1,4 +1,4 @@
-const ytdl= require("ytdl-core-discord");
+const ytdl= require("ytdl-core");
 const { MessageEmbed } = require("discord.js");
 const{ autoplay } = require("../musicFunctions.js")
 
@@ -13,10 +13,7 @@ module.exports = {
     }
     
     try {
-      var stream = await ytdl(song.url, {
-        filter: "audioonly", 
-        quality: "highestaudio"
-      });
+      var stream = await ytdl(song.url);
     } catch (error) {
       if (queue) {
         queue.songs.shift();
@@ -33,7 +30,7 @@ module.exports = {
     }
 
     const dispatcher = queue.connection
-      .play(stream, { type: "opus" })
+      .play(stream, { bitrate:56 })   
       .on("finish", () => {
         if (queue.loop) {
           // if loop is on, push the song back at the end of the queue

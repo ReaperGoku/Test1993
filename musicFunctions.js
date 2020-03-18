@@ -7,7 +7,7 @@ module.exports = {
       YT_ENDPOINT : "https://www.googleapis.com/youtube/v3/",
       YT_TOKEN: process.env.YOUTUBE_API_KEY,
     };
-    const channel = message.member.voiceChannel;
+    const channel = message.member.voice.channel;
     if (!channel) return message.reply("\n \`\`\`You need to join a voice channel first!\`\`\`").catch(console.error);
 
     const serverQueue = message.client.queue.get(message.guild.id);
@@ -70,9 +70,4 @@ module.exports = {
         }
       }
     },
-    checkMemberChannel: async function(queue, user){
-      console.log(collector.member.GuildMember.voiceChannelID);
-      const checkMembChannel = queue.guild.members.get(user.id).voiceChannel;
-      return checkMembChannel;
-    }
   }

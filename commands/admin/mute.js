@@ -4,7 +4,7 @@ module.exports = {
     name : "mute",
     aliases : ["m"],
     category: "admin",
-    description : "Warn a mentioned member",
+    description : "Mute a mentioned member",
     usage: "<Member & Time(s,m,h,d)>",
 
     run : async(client, message, args) => {

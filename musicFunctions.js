@@ -35,7 +35,7 @@ module.exports = {
         const requestUrl = `${config.YT_ENDPOINT}search?part=id&relatedToVideoId=${videoId}&type=video&key=${config.YT_TOKEN}`;
         const ap = await fetch(requestUrl)
         .then(res => res.json())
-        .then(json => json.items[2].id);
+        .then(json => json.items[1].id);
 
         songInfo = await ytdl.getInfo(ap.videoId);
         song = {
@@ -67,5 +67,13 @@ module.exports = {
           return message.channel.send(`\n \`\`\`Could not join the channel: ${error}\`\`\``).catch(console.error);
         }
       }
+    },
+    checkChannelMembers:    function(message) {
+      const serverQueue = message.client.queue.get(message.guild.id);
+      let channelMembers = 0;
+      serverQueue.channel.members.forEach(member => {
+          if(!member.user.bot) channelMembers++;
+      });
+      return channelMembers;
     },
   }

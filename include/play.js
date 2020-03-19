@@ -1,6 +1,6 @@
 const ytdl= require("ytdl-core");
 const { MessageEmbed } = require("discord.js");
-const{ autoplay } = require("../musicFunctions.js")
+const{ autoplay, checkChannelMembers } = require("../musicFunctions.js")
 
 module.exports = {
   async play(song, message) {
@@ -10,7 +10,7 @@ module.exports = {
       queue.channel.leave();
       message.client.queue.delete(message.guild.id);
       return queue.textChannel.send("\n \`\`\`🚫 Music queue ended.\`\`\`").catch(console.error);
-    }
+    };
     
     try {
       var stream = await ytdl(song.url);
@@ -18,7 +18,7 @@ module.exports = {
       if (queue) {
         queue.songs.shift();
         module.exports.play(queue.songs[0], message);        
-      }
+      };
 
       if (error.message.includes("copyright")) {
         return message.channel
@@ -26,38 +26,36 @@ module.exports = {
           .catch(console.error);
       } else {
         console.error(error);
-      }
+      };
     }
 
     const dispatcher = queue.connection
       .play(stream, { bitrate:56 })   
       .on("finish", () => {
-        if (queue.loop) {
-          // if loop is on, push the song back at the end of the queue
-          // so it can repeat endlessly
+        if ( checkChannelMembers(message) < 1){
+          queue.textChannel.client.queue.delete(message.guild.id);
+          queue.textChannel.send(`\`\`\`No one is in channel disconnecting!\`\`\``).catch(console.error);
+        } else if (queue.loop) {  // if loop is on, push the song back at the end of the queue,so it can repeat endlessly
           let lastSong = queue.songs.shift();
           queue.songs.push(lastSong);
           module.exports.play(queue.songs[0], message);
         } else if(queue.autoplay && song ) {
-          
           autoplay(song,message);
           module.exports.play(queue.songs[0], message); 
-
-        } else {
-          // Recursively play the next song
+        } else { // Recursively play the next song
           queue.songs.shift();
           module.exports.play(queue.songs[0], message)
         }
-      })      
-      .on("close", () => {
-        queue.textChannel.client.queue.delete(message.guild.id);
-        queue.textChannel.send(`\`\`\`Disconnected!\`\`\``).catch(console.error);
       })
       .on("error", console.error);
-
-    dispatcher.setVolumeLogarithmic(queue.volume / 100);
-
-    try {
+    
+      queue.connection.on("disconnect",() => {
+        queue.textChannel.client.queue.delete(message.guild.id);
+      });
+      
+      dispatcher.setVolumeLogarithmic(queue.volume / 100);
+      
+      try {
       const embed = new MessageEmbed()
       .setTitle(`🎶 Started playing: ${song.title}`)
       .setThumbnail(`https://img.youtube.com/vi/${song.id}/maxresdefault.jpg`);
@@ -70,13 +68,13 @@ module.exports = {
     } catch (error) {
       console.error(error);
     }
-
+    
     const filter = (reaction, user) => user.id !== message.client.user.id;
     const collector = playingMessage.createReactionCollector(filter, { time: 1800000 });
 
     collector.on("collect", (reaction, user) => {
-      // Stop if there is no queue on the server
-      if (!queue) return;
+      
+      if (!queue) return; // Stop if there is no queue on the server
       
       switch (reaction.emoji.name) {
         case "⏭":

@@ -1,4 +1,4 @@
-const ytdl= require("ytdl-core");
+const ytdl= require("discord-ytdl-core");
 const { MessageEmbed } = require("discord.js");
 const{ autoplay, checkChannelMembers } = require("../musicFunctions.js")
 
@@ -13,7 +13,12 @@ module.exports = {
     };
     
     try {
-      var stream = await ytdl(song.url);
+      var stream = await ytdl(song.url,{
+        filter: "audioonly",
+        quality: "highestaudio",
+        highWaterMark: 1 << 25,
+        encoderArgs: ['-af', 'equalizer=f=40:width_type=h:width=50:g=15']
+    });
     } catch (error) {
       if (queue) {
         queue.songs.shift();
@@ -30,7 +35,11 @@ module.exports = {
     }
 
     const dispatcher = queue.connection
-      .play(stream, { bitrate:56 })   
+      .play(stream, {
+        type: "opus",
+        highWaterMark: 1,
+        bitrate: 320000 
+      })   
       .on("finish", () => {
         if ( checkChannelMembers(message) < 1){
           queue.textChannel.client.queue.delete(message.guild.id);

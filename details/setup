@@ -1,8 +1,0 @@
-const { MessageEmbed } = require("discord.js");
-
-module.exports = {
-    name : "",
-    run : async(client, message) => {
-        const member = message.guild.members.get("425295803305820160");
-    }
-};

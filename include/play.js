@@ -43,7 +43,7 @@ module.exports = {
       })   
       .on("finish", () => {
         if ( checkChannelMembers(message) < 1){
-          queue.connection.dispatcher.end();
+          queue.channel.leave();
           queue.textChannel.client.queue.delete(message.guild.id);
           queue.textChannel.send(`\`\`\`No one is in channel disconnecting!\`\`\``).catch(console.error);
         } else if (queue.loop) {  // if loop is on, push the song back at the end of the queue,so it can repeat endlessly

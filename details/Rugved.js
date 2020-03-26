@@ -9,11 +9,11 @@ module.exports = {
         .setTitle("Rugved004")
         .setColor("00FFFF")
         .setThumbnail(member.user.avatarURL({ format: 'png', dynamic: true }))
-        .addField("IGN:", " Rugved004", true)
+        .addField("IGN:", "◥ᴬᴷ★ŘỮǤV€Đ࿐", true)
         .addField("UID:", 311793760, true)
         .addField("Guild:", "Âкατsυкiᴵᴺ", true)
         .addField("Favorite Weapon:", "SCAR, M1014 & MP40", true)
-        .setFooter("Abey sale");
+        .setFooter("Zandu Bam Rugved");
     
         message.channel.send(rug);
     }

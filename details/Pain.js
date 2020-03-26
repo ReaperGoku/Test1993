@@ -9,7 +9,7 @@ module.exports = {
         .setTitle("Pain")
         .setColor("00FFFF")
         .setThumbnail(member.user.avatarURL({ format: 'png', dynamic: true }))
-        .addField("IGN:", "₱₳ł₦ᴬᵏᵃᵗˢᵘᵏⁱ", true)
+        .addField("IGN:", "ＰＡＩＮ", true)
         .addField("UID:", 42921744, true)
         .addField("Guild:", "Âкατsuкi", true)
         .addField("Favorite Weapon:", "SCAR & MP40", true);

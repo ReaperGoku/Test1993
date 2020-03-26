@@ -10,10 +10,11 @@ module.exports = {
         .setTitle(" ᴀʙʜɪᴬᵏᵃᵗˢᵘᵏⁱ")
         .setColor("00FFFF")
         .setThumbnail(member.user.avatarURL({ format: 'png', dynamic: true }))
-        .addField("IGN:", " ᴀʙʜɪᴬᵏᵃᵗˢᵘᵏⁱ", true)
+        .addField("IGN:", "ᴀᴋ❖ᴀʙʜɪʀᴏᴄᴋツ", true)
         .addField("UID:", "40331033", true)
         .addField("Guild:", "Âкατsuкi", true)
-        .addField("Favorite Weapon:", "SCAR & MP40", true);
+        .addField("Favorite Weapon:", "SCAR & MP40", true)
+        .setFooter("Love yourself :purple_heart:");
     
       message.channel.send(abhi);
     }

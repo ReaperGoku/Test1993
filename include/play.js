@@ -7,8 +7,8 @@ module.exports = {
     const queue = message.client.queue.get(message.guild.id);
     
     if (!song) {
-      setTimeout(function(){ queue.channel.leave();
-      queue.textChannel.send("\`\`\` Nothing is playing Disconnecting! \`\`\`") }, 20000);
+      queue.channel.leave();
+      queue.textChannel.send("\`\`\` Nothing is playing Disconnecting! \`\`\`");
       message.client.queue.delete(message.guild.id);
       return
     };
@@ -45,7 +45,7 @@ module.exports = {
         if ( checkChannelMembers(message) < 1){
           queue.channel.leave();
           queue.textChannel.client.queue.delete(message.guild.id);
-          queue.textChannel.send(`\`\`\`No one is in channel disconnecting!\`\`\``).catch(console.error);
+          return queue.textChannel.send(`\`\`\`No one is in channel disconnecting!\`\`\``).catch(console.error);
         } else if (queue.loop) {  // if loop is on, push the song back at the end of the queue,so it can repeat endlessly
           let lastSong = queue.songs.shift();
           queue.songs.push(lastSong);

@@ -62,7 +62,7 @@ module.exports = {
     
       queue.connection.on("disconnect",() => {
         queue.textChannel.client.queue.delete(message.guild.id);
-      });
+      })
       
       dispatcher.setVolumeLogarithmic(queue.volume / 100);
       

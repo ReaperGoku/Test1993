@@ -37,7 +37,7 @@ module.exports = {
         // Start the playlist if playlist url was provided
         if (!videoPattern.test(args[0]) && playlistPattern.test(args[0])) {
           return message.client.commands.get("playlist").run(client, message, args);
-        }
+        };
     
         const serverQueue = message.client.queue.get(message.guild.id);
         const queueConstruct = {

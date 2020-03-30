@@ -9,7 +9,7 @@ module.exports = {
     run : async(client, message, song) => {
     
       const serverQueue = message.client.queue.get(message.guild.id);
-      let clientVoiceConnection = message.guild.voice.connection
+      let clientVoiceConnection = message.guild.voice.connection;
       
       if (!serverQueue)
       return message.channel.send("\`\`\`There is nothing playing.\`\`\`").catch(console.error);

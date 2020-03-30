@@ -70,9 +70,9 @@ module.exports = {
       }
     },
     checkChannelMembers:    function(message) {
-      const serverQueue = message.client.queue.get(message.guild.id);
+      let clientVoiceConnection = message.guild.voice.connection;
       let channelMembers = 0;
-      serverQueue.channel.members.forEach(member => {
+      clientVoiceConnection.voice.channel.members.forEach(member => {
           if(!member.user.bot) channelMembers++;
       });
       return channelMembers;

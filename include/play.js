@@ -5,10 +5,11 @@ const{ autoplay, checkChannelMembers } = require("../musicFunctions.js")
 module.exports = {
   async play(song, message) {
     const queue = message.client.queue.get(message.guild.id);
+    let clientVoiceConnection = message.guild.voice.connection;
     
     if (!song) {
-      queue.channel.leave();
-      queue.textChannel.send("\`\`\` Nothing is playing Disconnecting! \`\`\`");
+      clientVoiceConnection.voice.channel.leave();
+      queue.textChannel.send("\`\`\`Nothing is playing Disconnecting! \`\`\`");
       message.client.queue.delete(message.guild.id);
       return
     };
@@ -43,7 +44,7 @@ module.exports = {
       })   
       .on("finish", () => {
         if ( checkChannelMembers(message) < 1){
-          queue.channel.leave();
+          clientVoiceConnection.voice.channel.leave();
           queue.textChannel.client.queue.delete(message.guild.id);
           return queue.textChannel.send(`\`\`\`No one is in channel disconnecting!\`\`\``).catch(console.error);
         } else if (queue.loop) {  // if loop is on, push the song back at the end of the queue,so it can repeat endlessly

@@ -47,6 +47,7 @@ module.exports = {
         //end of create role
         let mutetime = args[1];
         if(!mutetime) return message.reply("\`\`\`You didn't specify a time!\`\`\`");
+        if(!mutetime.match(/^\d/)) return message.reply("\`\`\`You didn't specify a time!\`\`\`");
         await(tomute.roles.add(muterole.id));
         message.reply(`\*\*\*${tomute.displayName} has been muted for ${ms(ms(mutetime))}\*\*\*`);
         setTimeout(function(){

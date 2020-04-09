@@ -13,6 +13,7 @@ module.exports = {
         .addField("UID:", "663211040", true)
         .addField("Guild:", "Âкατsuкi", true)
         .addField("Favorite_Weapon:", "AK & M1887", true)
+        .setFooter("0 Kill wala");
     
       message.channel.send(viru);
     }

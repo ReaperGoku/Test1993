@@ -1,20 +1,20 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name : "jiren",
+    name : "sumi",
     run : async(client, message) => {
-        const member = message.guild.members.cache.get("425295803305820160");
+        const member = message.guild.members.cache.get("532631150108082187");
 
         var jiren = new MessageEmbed()
-        .setTitle("ქɪʀᴇɴ Ꭰ. Ꮐʀᴇʏ")
+        .setTitle("Sumi")
         .setColor("00FFFF")
         .setThumbnail(member.user.avatarURL({ format: 'png', dynamic: true }))
-        .addField("IGN:", "ქɪʀᴇɴ Ꭰ. Ꮐʀᴇʏ", true)
-        .addField("UID:", "1149406853", true)
+        .addField("IGN:", "Lᴏʀᴅ☁Jɪʀᴀɪʏᴀ", true)
+        .addField("UID:", "501106749", true)
         .addField("Guild:", "Âкατsuкi", true)
         .addField("Favorite_Weapon:", "Famas & M1014", true)
         .setFooter("The Pervert");
     
-      message.channel.send(jiren);
+      //message.channel.send(jiren);
     }
 };

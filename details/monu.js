@@ -9,10 +9,11 @@ module.exports = {
         .setTitle("Monu")
         .setColor("00FFFF")
         .setThumbnail(member.user.avatarURL({ format: 'png', dynamic: true }))
-        .addField("IGN:", "ⒶⓀ♬★:m:ⓄⓃⓊ★♬", true)
+        .addField("IGN:", "『AK』MONU", true)
         .addField("UID:", 227258203, true)
-        .addField("Guild:", "Âкατsuкiᵀˢ⁰⁷", true)
-        .addField("Favorite Weapon:", "Mp40❤", true);
+        .addField("Guild:", "AKATSUKI★07", true)
+        .addField("Favorite Weapon:", "Mp40❤", true)
+        .setFooter("Madara ka bhai");
     
       message.channel.send(monu);
     }

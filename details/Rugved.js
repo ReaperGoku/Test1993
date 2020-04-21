@@ -11,7 +11,7 @@ module.exports = {
         .setThumbnail(member.user.avatarURL({ format: 'png', dynamic: true }))
         .addField("IGN:", "◥ᴬᴷ★ŘỮǤV€Đ࿐", true)
         .addField("UID:", 311793760, true)
-        .addField("Guild:", "Âкατsυкiᴵᴺ", true)
+        .addField("Guild:", "☆Âкατsυкi☆", true)
         .addField("Favorite Weapon:", "SCAR, M1014 & MP40", true)
         .setFooter("Zandu Bam Rugved");
     
